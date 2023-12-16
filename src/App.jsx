@@ -2,7 +2,7 @@ import { useState } from "react";
 import Search from "./components/Search";
 import SearchResults from "./components/SearchResults";
 
-function App() {
+const App = () => {
 
   const [currentSearchQuery, setCurrentSearchQuery] = useState('');
 
@@ -11,11 +11,11 @@ function App() {
   };
 
   return (
-   <div>
-    <Search handleSearch={handleSearch}/>
-    <SearchResults searchQuery={currentSearchQuery} />
-   </div>
-  )
-}
+    <div>
+      <Search onSearch={handleSearch} />
+      <SearchResults searchQuery={currentSearchQuery} />
+    </div>
+  );
+};
 
-export default App
+export default App;

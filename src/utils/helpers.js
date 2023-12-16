@@ -25,3 +25,17 @@ export const fetchData = async (searchQuery) => {
       throw error; 
     }
   };
+
+//   export  const filterResults = ({results, minPrice, maxPrice}) => {
+//     const filtered = results.filter((result) => {
+//       const price = parseFloat(result.price.replace(/[^0-9.-]+/g, '')); 
+//       return (
+//         (!minPrice || price >= parseFloat(minPrice)) &&
+//         (!maxPrice || price <= parseFloat(maxPrice))
+//       );
+//     });
+//     return filtered;
+//   };
+
+
+

@@ -1,67 +1,69 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
+
 import { useEffect, useRef, useState } from "react";
 import { Key } from "../utils/constants";
 
 const Search = ({onSearch}) => {
 
+ 
     const [searchQuery, setSearchQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const searchRef = useRef(null);
 
 
-    useEffect(() => {
-        const fetchSuggestions = async () => {
-          try {
-            const apiUrl = `https://serpapi.com/search?q=${searchQuery}&api_key=${Key}&engine=google_trends_autocomplete`;
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-    
-            setSuggestions(data?.suggestions || []);
-          } catch (error) {
-            console.error('Error fetching suggestions:', error);
-          }
-        };
-        if (searchQuery.trim() !== '') {
-          fetchSuggestions();
-        } else {
-          setSuggestions([]); 
-        }
-      }, [searchQuery]);
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      try {
+        const apiUrl = `https://serpapi.com/search?q=${searchQuery}&api_key=${Key}&engine=google_trends_autocomplete`;
+        const response = await fetch(apiUrl);
+        const data = await response.json();
 
-      useEffect(() => {
-        const handleOutsideClick = (event) => {
-          if (searchRef.current && !searchRef.current.contains(event.target)) {
-            setSuggestions([]);
-          }
-        };
-    
-        const handleScroll = () => {
-          setSuggestions([]);
-        };
-    
-        document.addEventListener('click', handleOutsideClick);
-        document.addEventListener('scroll', handleScroll);
-    
-        return () => {
-          document.removeEventListener('click', handleOutsideClick);
-          document.removeEventListener('scroll', handleScroll);
-        };
-      }, []);
-    
+        setSuggestions(data?.suggestions || []);
+      } catch (error) {
+        console.error('Error fetching suggestions:', error);
+      }
+    };
+    if (searchQuery.trim() !== '') {
+      fetchSuggestions();
+    } else {
+      setSuggestions([]); 
+    }
+  }, [searchQuery]);
+
+// suggestion bar hide handle
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setSuggestions([]);
+      }
+    };
+
+    const handleScroll = () => {
+      setSuggestions([]);
+    };
+
+    document.addEventListener('click', handleOutsideClick);
+    document.addEventListener('scroll', handleScroll);
+
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+      document.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
 
-      
   const handleSuggestionClick = (suggestion) => {
     setSearchQuery(suggestion);
     setSuggestions([]); 
     onSearch(suggestion);
   };
 
-      
+
     const handleSearchClick = () => {
         onSearch(searchQuery);
       };
+
 
   return (
     <div className="container mx-auto fixed z-10">
@@ -109,7 +111,7 @@ const Search = ({onSearch}) => {
       </div>
     </nav>
   </div>
+
   )
 }
-
 export default Search
