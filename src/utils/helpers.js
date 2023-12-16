@@ -7,7 +7,7 @@ export const fetchData = async (searchQuery) => {
       const apiUrl = "https://serpapi.com/search";
       const queryString = new URLSearchParams({
         engine: "google_shopping",
-        q: searchQuery || "h&m",
+        q: searchQuery,
         api_key: apiKey,
       });
   
