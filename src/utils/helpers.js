@@ -7,7 +7,7 @@ export const fetchData = async (searchQuery) => {
       const apiUrl = "https://serpapi.com/search";
       const queryString = new URLSearchParams({
         engine: "google_shopping",
-        q: searchQuery,
+        q: searchQuery || "h&m",
         api_key: apiKey,
       });
   
@@ -26,16 +26,6 @@ export const fetchData = async (searchQuery) => {
     }
   };
 
-//   export  const filterResults = ({results, minPrice, maxPrice}) => {
-//     const filtered = results.filter((result) => {
-//       const price = parseFloat(result.price.replace(/[^0-9.-]+/g, '')); 
-//       return (
-//         (!minPrice || price >= parseFloat(minPrice)) &&
-//         (!maxPrice || price <= parseFloat(maxPrice))
-//       );
-//     });
-//     return filtered;
-//   };
 
 
 

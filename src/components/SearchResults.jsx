@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-// import { Key } from "../utils/constants.js";
 import { fetchData } from "../utils/helpers.js";
 
 const SearchResults = ({searchQuery}) => {
